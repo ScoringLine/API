@@ -1,10 +1,13 @@
 Création d'un questionnaire
 =====================================================================
 
-** Pré requis **
-_Avoir une clé partenaire (api\_key), fourni par nos services
-Avoir une clé entreprise (company\_key), obtenu lors de la création du client
-Avoir une clé utilisateur (user\_key), obtenu lors de la création du client_
+**Pré requis**
+
+- _Avoir une clé partenaire (api\_key), fourni par nos services_
+
+- _Avoir une clé entreprise (company\_key), obtenu lors de la création du client_
+
+- _Avoir une clé utilisateur (user\_key), obtenu lors de la création du client_
 
 # Cas pratique
 
@@ -48,29 +51,39 @@ Avec les paramètres, ci-dessous.
 }
 ```
 
+Le script retournera un code 200 sous la forme de 
+
+{
+    questionnaireId: "Id du questionnaire à conserver"
+}
+
 # Création des éléments
 
 ## Type des éléments
 
-"description"
-"break"
-"open_question"
-"choice"
-"media"
-"webcam"
+- "description"
+- "break"
+- "open_question"
+- "choice"
+- "media"
+- "webcam"
 
 ## Options des éléments
 
 ### Options communes
 "name" : Nom de l'élément
+
 "text_description" : Texte complémentaire au nom
 
 ### [break]
-"send_mail_option": Au bout de combien de temps doit être envoyer l'email de déblocage
+"send\_mail\_option": Au bout de combien de temps doit être envoyer l'email de déblocage
+
 "text_description": Texte qui s'affiche lorsque le candidat atteint le temps d'arrêt
+
 "mail_acceptation": Contenu de l'email de déblocage
 
 ### [media]
 "isResume": Si l'élément recherché est un CV
+
 "doc_type": Type de document autorisé
 
