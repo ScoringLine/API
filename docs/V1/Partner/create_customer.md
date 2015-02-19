@@ -8,7 +8,7 @@ _Avoir une clé partenaire (api\_key), kfourni par nos services_
 
 Vous avez un client qui possède un compte sur votre site et vous souhaitez le relier à ScoringLine pour créer des questionnaires, 3 cas apparaissent.
 
-# Client non existant sur ScoringLine
+## Client non existant sur ScoringLine
 
 Vous devez appelez cette URL
 
@@ -47,12 +47,12 @@ Si toutes les informations sont fournis vous devriez obtenir cette réponse (cod
 > Conservez ces 2 clés elles seront importantes pour vos futures interactions avec l'API ScoringLine
 
 
-# Client créé par vos services et déjà authentifié
+## Client créé par vos services et déjà authentifié
 
 Vous avez, normalement, déjà en votre possession la clé entreprise "company_key" et la clé d'utilisateur "user_key" pour effectuer les interactions avec l'API ScoringLine
 
 
-# Client existant sur ScoringLine, mais non authentifié par vos services
+## Client existant sur ScoringLine, mais non authentifié par vos services
 
 A venir
 
