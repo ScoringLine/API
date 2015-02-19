@@ -1,6 +1,10 @@
 Création d'un client
 =====================================================================
 
+```
+**Attention!! toutes les urls fournies dans ce tuto commencent par /api-saas/test/v1/ elles ne sont présentes qu'à titre de test, une fois le code fonctionnel, veuillez utiliser une url de la forme /api-saas/v1/**
+```
+
 **Pré requis**
 
 _Avoir une clé partenaire (api\_key), kfourni par nos services_
@@ -13,7 +17,7 @@ Vous avez un client qui possède un compte sur votre site et vous souhaitez le r
 Vous devez appelez cette URL
 
 ```
-POST /api-saas/v1/create-customer?api_key=yourapikey
+POST /api-saas/test/v1/create-customer?api_key=yourapikey
 ```
 
 Avec les paramètres, ci-dessous.
