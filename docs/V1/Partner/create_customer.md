@@ -1,8 +1,9 @@
 Création d'un client
 =====================================================================
 
-** Pré requis **
-_Avoir une clé partenaire (api\_key), fourni par nos services_
+**Pré requis**
+
+_Avoir une clé partenaire (api\_key), kfourni par nos services_
 
 
 Vous avez un client qui possède un compte sur votre site et vous souhaitez le relier à ScoringLine pour créer des questionnaires, 3 cas apparaissent.
