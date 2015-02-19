@@ -1,9 +1,7 @@
 Création d'un client
 =====================================================================
 
-```
 **Attention!! toutes les urls fournies dans ce tuto commencent par /api-saas/test/v1/ elles ne sont présentes qu'à titre de test, une fois le code fonctionnel, veuillez utiliser une url de la forme /api-saas/v1/**
-```
 
 **Pré requis**
 
