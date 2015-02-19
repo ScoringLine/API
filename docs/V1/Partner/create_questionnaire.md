@@ -1,6 +1,8 @@
 Création d'un questionnaire
 =====================================================================
 
+**Attention!! toutes les urls fournies dans cette documentation commencent par /api-saas/test/v1/. Elles ne sont utilisées que pour les tests de fonctionnement (aucun enregistrement), une fois le code implémentée, veuillez utiliser une url de la forme /api-saas/v1/**
+
 **Pré requis**
 
 - _Avoir une clé partenaire (api\_key), fourni par nos services_
@@ -16,7 +18,7 @@ Vous devez créer un questionnaire pour un "Chef de projet", ce questionnaire de
 Vous devez appelez cette URL
 
 ```
-POST /api-saas/v1/create-customer?api_key=yourapikey&company_key=companykey&user_key=userkey
+POST /api-saas/test/v1/create-customer?api_key=yourapikey&company_key=companykey&user_key=userkey
 ```
 
 Avec les paramètres, ci-dessous.
