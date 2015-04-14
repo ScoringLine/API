@@ -14,7 +14,6 @@ Vous devez appelez cette URL
 
 ```
 POST http://api.scoringline.com/api-saas/v1/customer/questionnaires?api_key=yourapikey
-
 ```
 
 Vous recevrez en retour une collection de questionnaire
