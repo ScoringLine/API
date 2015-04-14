@@ -12,7 +12,7 @@
     $ch = curl_init();
     // CONFIGURED options
     $optArray = array(
-        CURLOPT_URL => 'http://api.scoringline.com/api-saas/v1/customer/questionnaires?api_key=viamedistemporairachanger',
+        CURLOPT_URL => 'http://api.scoringline.com/api-saas/v1/customer/questionnaires?api_key=yourapikey',
         CURLOPT_RETURNTRANSFER => true
     );
     // PASSED params
