@@ -2,7 +2,6 @@
 <html lang="fr-FR">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 
 <body>
@@ -23,14 +22,14 @@
     curl_close ($ch)
     ?>
     <ul>
-        <?php foreach ($result->questionnaires as $r) { ?>
+        <?php foreach ($result->questionnaires as $r) : ?>
             <li style="border-bottom: 1px solid lightgray;">
                 <h2><?php echo $r->name; ?></h2>
-                <?php if ($r->localization) { ?>
+                <?php if ($r->localization) : ?>
                     <p>
                         <strong>Localisation :</strong> <?php echo $r->localization; ?>
                     </p>
-                <?php } ?>
+                <?php endif; ?>
                 <p>
                     <a href="http://fr.scoringline.com/questionnaire/<?php echo $r->slug ?>/login">Postuler à l'offre</a>
                 </p>
@@ -41,7 +40,7 @@
                     <a href="http://fr.scoringline.com/questionnaire/<?php echo $r->slug ?>/login">Postuler à l'offre</a>
                 </p>
             </li>
-        <?php } ?>
+        <?php endforeach; ?>
     </ul>
 </body>
 </html>
