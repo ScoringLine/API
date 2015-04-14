@@ -3,7 +3,7 @@ Récupération des questionnaires de votre entreprise
 
 **Pré requis**
 
-- _Avoir une clé client (api\_key), fourni par nos services_
+- _Avoir une clé client (api\_key), fournie par nos services_
 
 
 # Cas pratique
@@ -20,23 +20,25 @@ Vous recevrez en retour une collection de questionnaire
 
 ```json
 {
-  "questionnaires": [11]
-    0: {
-      "name": "nom du questionnaire"
-      "slug": "identifiant"
-      "localization": "Localisation de votre annonce"
-      "job_offer": "Récapitulatif de votre annonce"
-    },
-    1: {
-      "name": "nom du questionnaire"
-      "slug": "identifiant"
-      "localization": "Localisation de votre annonce"
-      "job_offer": "Récapitulatif de votre annonce"
+  "questionnaires":
+    {
+      "0": {
+        "name": "nom du questionnaire",
+        "slug": "identifiant",
+        "localization": "Localisation de votre annonce",
+        "job_offer": "Récapitulatif de votre annonce"
+      },
+      "1": {
+        "name": "nom du questionnaire",
+        "slug": "identifiant",
+        "localization": "Localisation de votre annonce",
+        "job_offer": "Récapitulatif de votre annonce"
+      }
     }
 }
 ```
 Le lien à générer pour arriver sur le début de l'entretien est le suivant
 
 ``` html
-http://fr.scoringline.com/questionnaire/<?php echo $r->slug ?>/login
+http://fr.scoringline.com/questionnaire/{slug}/login
 ```
