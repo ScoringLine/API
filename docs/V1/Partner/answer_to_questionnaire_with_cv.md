@@ -1,4 +1,4 @@
-Répondre aux deux premières réponses du questionnaire
+Répondre aux deux premières questions du questionnaire
 =====================================================
 
 > **Attention**: toutes les urls fournies dans cette documentation commencent par /api-saas/test/v1/. Elles ne sont utilisées que pour les tests de fonctionnement (aucun enregistrement), une fois le code implémenté, veuillez utiliser une url de la forme /api-saas/v1/
