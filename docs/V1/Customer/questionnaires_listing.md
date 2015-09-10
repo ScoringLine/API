@@ -20,7 +20,7 @@ GET http://api.scoringline.com/api-saas/v1/customer/questionnaires?api_key={Your
 * {YourApiKey} est une chaîne de caractères fourni par Scoringline;
 * Le paramètre (*facultatif*) « filter » peut prendre les valeurs `all` et `published`
 
-Vous recevrez en retour une collection de questionnaire publiés.
+Vous recevrez en retour une collection de questionnaire publiés (dans le contexte actuel).
 
 ```json
 {
