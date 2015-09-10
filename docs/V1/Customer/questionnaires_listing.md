@@ -1,19 +1,21 @@
 Récupération des questionnaires de votre entreprise
 =====================================================================
 
-**Pré requis**
+Pré requis
+----------
 
-- _Avoir une clé client (api\_key), fournie par nos services_
+*  *Avoir une clé client (`api_key`), fournie par nos services*
 
 
-# Cas pratique
+Utilisation
+-----------
 
 Vous souhaitez afficher tous vos questionnaires publiés sur votre site Internet et les rediriger vers la connexion.
 
-Vous devez appelez cette URL
+Vous devez appeler cette URL:
 
 ```
-POST http://api.scoringline.com/api-saas/v1/customer/questionnaires?api_key=yourapikey
+GET http://api.scoringline.com/api-saas/v1/customer/questionnaires?api_key={YourApiKey}
 ```
 
 Vous recevrez en retour une collection de questionnaire
