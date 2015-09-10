@@ -30,14 +30,16 @@ Vous recevrez en retour une collection de questionnaire publiés (en utilisant l
       "name": "nom du questionnaire",
       "slug": "identifiant",
       "localization": "Localisation de votre annonce",
-      "job_offer": "Récapitulatif de votre annonce"
+      "job_offer": "Récapitulatif de votre annonce",
+      "anonymous": false
     },
     "1": {
       "status": "published",
       "name": "nom du questionnaire",
       "slug": "identifiant",
       "localization": "Localisation de votre annonce",
-      "job_offer": "Récapitulatif de votre annonce"
+      "job_offer": "Récapitulatif de votre annonce",
+      "anonymous": false
     }
   }
 }
