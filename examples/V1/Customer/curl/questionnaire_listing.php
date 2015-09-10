@@ -19,10 +19,10 @@
     // GET results
     $result = json_decode(curl_exec($ch));
     // CLOSE curl
-    curl_close ($ch)
+    curl_close ($ch);
     ?>
     <ul>
-        <?php foreach ($result->questionnaires as $r) : ?>
+        <?php foreach ($result as $r) : ?>
             <li style="border-bottom: 1px solid lightgray;">
                 <h2><?php echo $r->name; ?></h2>
                 <?php if ($r->localization) : ?>

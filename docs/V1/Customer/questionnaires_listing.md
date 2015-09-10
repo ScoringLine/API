@@ -1,43 +1,50 @@
 Récupération des questionnaires de votre entreprise
 =====================================================================
 
-**Pré requis**
+Pré requis
+----------
 
-- _Avoir une clé client (api\_key), fournie par nos services_
+* *Avoir une clé client (`api_key`), fournie par nos services*
 
 
-# Cas pratique
-
+Utilisation
+-----------
 Vous souhaitez afficher tous vos questionnaires publiés sur votre site Internet et les rediriger vers la connexion.
 
-Vous devez appelez cette URL
+Vous devez appeler cette URL:
 
 ```
-POST http://api.scoringline.com/api-saas/v1/customer/questionnaires?api_key=yourapikey
+GET http://api.scoringline.com/api-saas/v1/customer/questionnaires?api_key={YourApiKey}&filter=published
 ```
 
-Vous recevrez en retour une collection de questionnaire
+* {YourApiKey} est une chaîne de caractères fourni par Scoringline;
+* Le paramètre (*facultatif*) « filter » peut prendre les valeurs `all` et `published`
+
+Vous recevrez en retour une collection de questionnaire publiés (dans le contexte actuel).
 
 ```json
 {
-  "questionnaires":
-    {
-      "0": {
-        "name": "nom du questionnaire",
-        "slug": "identifiant",
-        "localization": "Localisation de votre annonce",
-        "job_offer": "Récapitulatif de votre annonce"
-      },
-      "1": {
-        "name": "nom du questionnaire",
-        "slug": "identifiant",
-        "localization": "Localisation de votre annonce",
-        "job_offer": "Récapitulatif de votre annonce"
-      }
+  "questionnaires": {
+    "0": {
+      "status": "published",
+      "name": "nom du questionnaire",
+      "slug": "identifiant",
+      "localization": "Localisation de votre annonce",
+      "job_offer": "Récapitulatif de votre annonce"
+    },
+    "1": {
+      "status": "published",
+      "name": "nom du questionnaire",
+      "slug": "identifiant",
+      "localization": "Localisation de votre annonce",
+      "job_offer": "Récapitulatif de votre annonce"
     }
+  }
 }
 ```
-Le lien à générer pour arriver sur le début de l'entretien est le suivant
+
+
+Le lien à générer pour arriver sur le début de l'entretien est le suivant:
 
 ``` html
 http://fr.scoringline.com/questionnaire/{slug}/login
