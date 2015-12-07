@@ -30,7 +30,7 @@ Avec les paramètres, ci-dessous.
     "lastname": "Bar",
     "email": "foo@bar.com",
     "phone_number": "0760xxxxxx",
-    "resume": file
+    "resume": "File"
 }
 ```
 
