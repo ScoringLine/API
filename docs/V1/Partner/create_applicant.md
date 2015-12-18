@@ -18,7 +18,7 @@ Création d'un répondant
 Vous souhaitez créer un répondant pour un questionnaire avec un élément temps d'arrêt
 
 ```
-POST http://api.scoringline.com/api-saas/test/v1/partner/api-saas/test/v1/questionnaire/{slug}/create-applicant?api_key=yourapikey&company_key=companykey&user_key=userkey
+POST http://api.scoringline.com/api-saas/test/v1/partner/questionnaires/{slug}/answer-starter?api_key=yourapikey&company_key=companykey&user_key=userkey
 ```
 
 Avec les paramètres, ci-dessous.
