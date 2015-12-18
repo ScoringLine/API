@@ -11,7 +11,7 @@ Création d'un répondant
 
 - _Avoir une clé utilisateur (user\_key), obtenu lors de la création du client_
 
-- _Avoir l'identifiant questionnaire (slug)
+- _Avoir l'identifiant questionnaire (slug)_
 
 # Cas pratique
 
