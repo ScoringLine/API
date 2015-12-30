@@ -18,7 +18,7 @@ Vous devez créer un questionnaire pour un "Chef de projet", ce questionnaire de
 Vous devez appelez cette URL
 
 ```
-POST http://api.scoringline.com/api-saas/test/v1/partner/api-saas/test/v1/create-customer?api_key=yourapikey&company_key=companykey&user_key=userkey
+POST http://api.scoringline.com/api-saas/test/v1/partner/create-customer?api_key=yourapikey&company_key=companykey&user_key=userkey
 ```
 
 Avec les paramètres, ci-dessous.
