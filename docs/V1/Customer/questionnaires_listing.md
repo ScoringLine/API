@@ -20,7 +20,7 @@ GET http://api.scoringline.com/api-saas/v1/customer/questionnaires?api_key={Your
 * {YourApiKey} est une chaîne de caractères fourni par Scoringline;
 * Le paramètre (*facultatif*) « filter » peut prendre les valeurs `all` et `published`
 
-Vous recevrez en retour une collection de questionnaire publiés (dans le contexte actuel).
+Vous recevrez en retour une collection de questionnaire publiés (en utilisant l'URL donnée).
 
 ```json
 {
@@ -30,14 +30,16 @@ Vous recevrez en retour une collection de questionnaire publiés (dans le contex
       "name": "nom du questionnaire",
       "slug": "identifiant",
       "localization": "Localisation de votre annonce",
-      "job_offer": "Récapitulatif de votre annonce"
+      "job_offer": "Récapitulatif de votre annonce",
+      "anonymous": false
     },
     "1": {
       "status": "published",
       "name": "nom du questionnaire",
       "slug": "identifiant",
       "localization": "Localisation de votre annonce",
-      "job_offer": "Récapitulatif de votre annonce"
+      "job_offer": "Récapitulatif de votre annonce",
+      "anonymous": false
     }
   }
 }
