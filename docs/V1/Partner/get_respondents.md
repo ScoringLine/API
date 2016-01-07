@@ -37,13 +37,8 @@ POST https://api.scoringline.com/api-saas/test/v1/partner/questionnaires/foobar/
 
 Avec les paramètres, ci-dessous.
 
-
-```json
-{
-    "filters": {
-        "status": "accepted"
-    }
-}
-```
+Clé              | valeur
+-----------------|------------------
+filters[status]  | accepted 
 
 Le script retournera un code `200` et l'ensemble des candidats ayant été acceptés.
