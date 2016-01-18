@@ -49,6 +49,8 @@ Voici les données retournées
 data             | description
 -----------------|------------------
 id               | Id du répondant 
+score_auto       | Scoring automatique
+score_total      | Note total
 phone_number     | Numéro de téléphone du répondant 
 email            | Email du répondant 
 first_name       | Prénom du répondant 
