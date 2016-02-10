@@ -63,7 +63,7 @@ firstname        | Paul
 lastname         | Charpentier
 phone_number     | 0600000000
 email            | paul.charpentier@scoringline.com
-cv               | Fichier binaire (pdf de préférence)
+resume           | Fichier binaire (pdf de préférence)
 
 ## Réponse
 
