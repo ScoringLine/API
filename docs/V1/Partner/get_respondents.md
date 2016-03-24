@@ -14,7 +14,7 @@ Récupérer les répondants d'un questionnaire
 - _Avoir l'identifiant questionnaire (slug)_
 
 # Requête
-**POST** `api-saas/test/v1/partner/questionnaires/{slug}/respondents.json`
+**GET|POST** `api-saas/test/v1/partner/questionnaires/{slug}/respondents.json`
 
 # Réponse
 `200` - La liste des candidats du questionnaire au format JSON
@@ -30,7 +30,7 @@ Les filtres disponibles sont les suivants :
 
 # Cas pratique
 
-## Vous souhaitez récupérer l'ensemble des candidats acceptés du questionnaire *foobar*.
+## Vous souhaitez récupérer l'ensemble des candidats ayant participé au questionnaire *foobar* en 2016 et ayant été acceptés.
 
 
 ```
@@ -44,7 +44,7 @@ Clé              | valeur
 filters[status]  | accepted 
 filters[from]    | 1451602800 
 
-Le script retournera un code `200` et l'ensemble des candidats ayant particpé au questionnaire à partir du 01/01/2016 00:00:00 et ayant été acceptés.
+Le script retournera un code `200` et l'ensemble des candidats ayant participé au questionnaire à partir du 01/01/2016 00:00:00 et ayant été acceptés.
 
 Voici les données retournées
 
