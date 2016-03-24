@@ -14,7 +14,7 @@ Récupérer les répondants d'un questionnaire
 - _Avoir l'identifiant questionnaire (slug)_
 
 # Requête
-**GET|POST** `api-saas/test/v1/partner/questionnaires/{slug}/respondents.json`
+**POST** `api-saas/test/v1/partner/questionnaires/{slug}/respondents.json`
 
 # Réponse
 `200` - La liste des candidats du questionnaire au format JSON
