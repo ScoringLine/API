@@ -28,7 +28,7 @@ Les filtres disponibles sont les suivants :
 
 # Cas pratique
 
-## Vous souhaitez récupérer l'ensemble des candidats acceptés du questionnaire *foobar*.
+## Vous souhaitez récupérer l'ensemble des candidats ayant participé au questionnaire *foobar* en 2016 et ayant été acceptés.
 
 
 ```
