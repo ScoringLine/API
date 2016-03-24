@@ -26,7 +26,7 @@ Les filtres disponibles sont les suivants :
 * *status (`String`)* : Le statut du candidat. Example : `accepted`, `unmarked`, `waiting`
 * *haveScore (`String`)* : La notation du candidat. Example : `non_scored`, `scored_by_not_us`, `scored`, `scored_by_us`
 * *approximateKeyword (`String`)* : Chaîne de caractère recherchée dans le nom et l'adresse mail des candidats.
-* *from (`Int`)* : UNIX timestamp. Permet de récupérer les répondants à partir d'une date donnée
+* *from (`Int`)* : UNIX timestamp. Permet de récupérer les candidats à partir d'une date donnée
 
 # Cas pratique
 
