@@ -12,7 +12,7 @@ Récupérer les répondants d'un questionnaire
 - _Avoir l'identifiant questionnaire (slug)_
 
 # Requête
-**POST** `api-saas/v1/customer/questionnaires/{slug}/respondents.json`
+**GET** `api-saas/v1/customer/questionnaires/{slug}/respondents.json`
 
 # Réponse
 `200` - La liste des candidats du questionnaire au format JSON
@@ -31,7 +31,7 @@ Les filtres disponibles sont les suivants :
 
 
 ```
-POST https://api.scoringline.com/api-saas/v1/customer/questionnaires/foobar/respondents.json?api_key=yourapikey&company_key=companykey&user_key=userkey
+GET https://api.scoringline.com/api-saas/v1/customer/questionnaires/foobar/respondents.json?api_key=yourapikey&company_key=companykey&user_key=userkey
 ```
 
 Avec les paramètres, ci-dessous.
@@ -61,5 +61,5 @@ synthesis_link   | Lien vers la synthèse PDF du répondant (utilisateur connect
 
 
 ```
-POST https://api.scoringline.com/api-saas/v1/customer/questionnaires/foobar/respondents/{respondentId}/synthesis.pdf'
+GET https://api.scoringline.com/api-saas/v1/customer/questionnaires/foobar/respondents/{respondentId}/synthesis.pdf'
 ```
