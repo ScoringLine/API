@@ -42,9 +42,9 @@ Avec les paramètres, ci-dessous.
 Clé              | valeur
 -----------------|------------------
 filters[status]  | accepted 
-filters[from]    | 1453649849 
+filters[from]    | 1451602800 
 
-Le script retournera un code `200` et l'ensemble des candidats ayant été acceptés.
+Le script retournera un code `200` et l'ensemble des candidats ayant particpé au questionnaire à partir du 01/01/2016 00:00:00 et ayant été acceptés.
 
 Voici les données retournées
 
