@@ -35,7 +35,7 @@ firstname        | Paul
 lastname         | Charpentier
 phone_number     | 0600000000
 email            | paul.charpentier@scoringline.com
-strict           | (optionnel) booléen et `true` par défaut
+strict           | (optionnel) booléen et `false` par défaut
 
 Si vous passez le paramètre strict à false seule l'adresse email devra être un champ obligatoire et valide.
 
@@ -67,7 +67,7 @@ lastname         | Charpentier
 phone_number     | 0600000000
 email            | paul.charpentier@scoringline.com
 resume           | Fichier binaire (pdf de préférence)
-strict           | (optionnel) booléen et `true` par défaut
+strict           | (optionnel) booléen et `false` par défaut
 
 Si vous passez le paramètre strict à false seule l'adresse email devra être un champ obligatoire et valide.
 
