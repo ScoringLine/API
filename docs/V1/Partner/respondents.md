@@ -1,5 +1,4 @@
-Récupérer les répondants d'un questionnaire
-=====================================================================
+# Récupération des répondants
 
 >**:warning: toutes les urls fournies dans cette documentation commencent par /api-saas/test/v1/. Elles ne sont utilisées que pour les tests de fonctionnement (aucun enregistrement), une fois le code implémentée, veuillez utiliser une url de la forme /api-saas/v1/**
 
@@ -13,13 +12,21 @@ Récupérer les répondants d'un questionnaire
 
 - _Avoir l'identifiant questionnaire (slug)_
 
-# Requête
+## Table des matières
+
+1. [Récupérer les répondants d'un questionnaire](#récupérer-les-répondants-dun-questionnaire)
+
+2. [Récupérer un répondant d'un questionnaire](#récupérer-un-répondant-dun-questionnaire)
+
+## Récupérer les répondants d'un questionnaire
+
+### Requête
 **POST** `api-saas/test/v1/partner/questionnaires/{slug}/respondents.json`
 
-# Réponse
+### Réponse
 `200` - La liste des candidats du questionnaire au format JSON
 
-# Filtres
+### Filtres
 Il est possible de filtrer les répondants d'un questionnaire selon plusieurs critères.
 
 Les filtres disponibles sont les suivants :
@@ -28,10 +35,9 @@ Les filtres disponibles sont les suivants :
 * *approximateKeyword (`String`)* : Chaîne de caractère recherchée dans le nom et l'adresse mail des candidats.
 * *from (`Int`)* : UNIX timestamp. Permet de récupérer les candidats à partir d'une date donnée
 
-# Cas pratique
+### Cas pratique
 
-## Vous souhaitez récupérer l'ensemble des candidats ayant participé au questionnaire *foobar* en 2016 et ayant été acceptés.
-
+#### Vous souhaitez récupérer l'ensemble des candidats ayant participé au questionnaire *foobar* en 2016 et ayant été acceptés.
 
 ```
 POST https://api.scoringline.com/api-saas/test/v1/partner/questionnaires/foobar/respondents.json?api_key=yourapikey&company_key=companykey&user_key=userkey
@@ -68,9 +74,40 @@ author    | Prénom et Nom de l'auteur du commentaire
 author_id | Id de l'auteur du commentaire
 comment   | Commentaire
 
+## Récupérer un répondant d'un questionnaire
 
-## Vous souhaitez récupérer directement *la synthèse PDF d'un répondent*.
+### Requête
+**GET** `api-saas/test/v1/partner/questionnaires/{slug}/respondents/{respondentId}.json`
 
+### Réponse
+`200` - Les données d'un candidat du questionnaire au format JSON
+
+Voici les données retournées :
+
+data             | description
+-----------------|------------------
+id               | Id du répondant 
+score_auto       | Scoring automatique
+score_total      | Note total
+phone_number     | Numéro de téléphone du répondant
+main_comment     | Commentaire principal du répondant
+email            | Email du répondant 
+first_name       | Prénom du répondant 
+last_name        | Nom du répondant 
+candidate_link   | Lien vers la fiche du répondant (utilisateur connecté sur Scoringline) 
+synthesis_link   | Lien vers la synthèse PDF du répondant (utilisateur connecté sur Scoringline) 
+comments         | Tableau de commentaires concernant le répondant (voir tableau ci-dessous)
+documents        | L'ensemble des documents (CV, synthèse) encodés au format base64
+
+comments  | description
+----------|------------------
+author    | Prénom et Nom de l'auteur du commentaire
+author_id | Id de l'auteur du commentaire
+comment   | Commentaire
+
+### Cas pratique
+
+#### Vous souhaitez récupérer directement *la synthèse PDF d'un répondent*
 
 ```
 POST https://api.scoringline.com/api-saas/v1/partner/questionnaires/foobar/respondents/{respondentId}/synthesis.pdf'
