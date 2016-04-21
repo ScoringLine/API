@@ -11,6 +11,14 @@ Récupérer les répondants d'un questionnaire
 
 - _Avoir l'identifiant questionnaire (slug)_
 
+## Table des matières
+
+1. [Récupérer les répondants d'un questionnaire](#récupérer-les-répondants-dun-questionnaire)
+
+2. [Récupérer un répondant d'un questionnaire](#récupérer-un-répondant-dun-questionnaire)
+
+## Récupérer les répondants d'un questionnaire
+
 # Requête
 **POST** `api-saas/v1/customer/questionnaires/{slug}/respondents.json`
 
@@ -66,9 +74,41 @@ author    | Prénom et Nom de l'auteur du commentaire
 author_id | Id de l'auteur du commentaire
 comment   | Commentaire
 
-## Vous souhaitez récupérer directement *la synthèse PDF d'un répondent*.
+## Récupérer un répondant d'un questionnaire
 
+### Requête
+**GET** `api-saas/test/v1/customer/questionnaires/{slug}/respondents/{respondentId}.json`
+
+### Réponse
+`200` - Les données d'un candidat du questionnaire au format JSON
+
+Voici les données retournées :
+
+data             | description
+-----------------|------------------
+id               | Id du répondant 
+score_auto       | Scoring automatique
+score_total      | Note total
+phone_number     | Numéro de téléphone du répondant
+main_comment     | Commentaire principal du répondant
+email            | Email du répondant 
+first_name       | Prénom du répondant 
+last_name        | Nom du répondant 
+candidate_link   | Lien vers la fiche du répondant (utilisateur connecté sur Scoringline) 
+synthesis_link   | Lien vers la synthèse PDF du répondant (utilisateur connecté sur Scoringline) 
+comments         | Tableau de commentaires concernant le répondant (voir tableau ci-dessous)
+documents        | L'ensemble des documents (CV, synthèse) encodés au format base64
+
+comments  | description
+----------|------------------
+author    | Prénom et Nom de l'auteur du commentaire
+author_id | Id de l'auteur du commentaire
+comment   | Commentaire
+
+### Cas pratique
+
+#### Vous souhaitez récupérer directement *la synthèse PDF d'un répondent*
 
 ```
-GET https://api.scoringline.com/api-saas/v1/customer/questionnaires/foobar/respondents/{respondentId}/synthesis.pdf'
+POST|GET https://api.scoringline.com/api-saas/v1/customer/questionnaires/foobar/respondents/{respondentId}/synthesis.pdf'
 ```
