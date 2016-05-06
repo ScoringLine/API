@@ -119,6 +119,11 @@ POST https://api.scoringline.com/api-saas/v1/partner/questionnaires/foobar/respo
 ### Requête
 **GET** `api-saas/v1/partner/respondents`
 
+Paramètres       | description
+-----------------|------------------
+limit            | Seuil maximal de résulats affichés (10 par défaut)
+page             | Numéro de la page souhaitée (1 par défaut)
+
 ### Réponse
 `200` - La liste des candidats de l'entreprise au format JSON
 
