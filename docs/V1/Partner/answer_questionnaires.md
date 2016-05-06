@@ -6,11 +6,13 @@ Répondre à un questionnaire
 Prérequis
 ----------
 
-Avoir les clés suivantes pour votre compte :
+- _Avoir une clé partenaire (api\_key), fourni par nos services_
 
-* Clé API Partenaire
-* Clé API Entreprise
-* Clé API Utilisateur
+- _Avoir une clé entreprise (company\_key), obtenu lors de la création du client_
+
+- _Avoir une clé utilisateur (user\_key), obtenu lors de la création du client_
+
+*Vous devrez ajouter ces paramètres à chaque requête en la concaténant avec `?api_key={api_key}&company_key={company_key}&user_key={user_key}`*
 
 # Table des matières
 1. [Répondre à un questionnaire sans CV](#répondre-à-un-questionnaire-sans-cv)
