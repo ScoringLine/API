@@ -18,6 +18,8 @@
 
 2. [Récupérer un répondant d'un questionnaire](#récupérer-un-répondant-dun-questionnaire)
 
+3. [Récupérer les répondants d'une entreprise](#récupérer-les-répondants-dune-entreprise)
+
 ## Récupérer les répondants d'un questionnaire
 
 ### Requête
@@ -112,3 +114,33 @@ comment   | Commentaire
 ```
 POST https://api.scoringline.com/api-saas/v1/partner/questionnaires/foobar/respondents/{respondentId}/synthesis.pdf'
 ```
+## Récupérer les répondants d'une entreprise
+
+### Requête
+**GET** `api-saas/v1/partner/respondents`
+
+### Réponse
+`200` - La liste des candidats de l'entreprise au format JSON
+
+Voici les données retournées :
+
+respondents      | description
+-----------------|------------------
+id               | Id du répondant 
+score_auto       | Scoring automatique
+score_total      | Note total
+phone_number     | Numéro de téléphone du répondant
+main_comment     | Commentaire principal du répondant
+email            | Email du répondant 
+first_name       | Prénom du répondant 
+last_name        | Nom du répondant 
+candidate_link   | Lien vers la fiche du répondant (utilisateur connecté sur Scoringline) 
+synthesis_link   | Lien vers la synthèse PDF du répondant (utilisateur connecté sur Scoringline) 
+status           | Statut (état) du répondant
+questionnaire    | Informations (id, name, slug, offer_ref) du questionnaire lié au répondant
+
+Les résultats sont paginés :
+`previousPage` représente l'URL de la page avec les résultats précédents,
+`nextPage` représente celle avec les résultats suivants.
+
+`totalResults` représente le nombre total de répondants paginés.
