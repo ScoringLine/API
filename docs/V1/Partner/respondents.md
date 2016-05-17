@@ -23,10 +23,11 @@
 ## Récupérer les répondants d'un questionnaire
 
 ### Requête
-**POST** `api-saas/test/v1/partner/questionnaires/{slug}/respondents.json`
+**POST** (ou GET sans filtres) `api-saas/test/v1/partner/questionnaires/{slug}/respondents.json`
 
 ### Réponse
 `200` - La liste des candidats du questionnaire au format JSON
+`400` - Les données que vous envoyez sont incorrect (un message d'erreur est fourni)
 
 ### Filtres
 Il est possible de filtrer les répondants d'un questionnaire selon plusieurs critères.
@@ -45,7 +46,7 @@ Les filtres disponibles sont les suivants :
 POST https://api.scoringline.com/api-saas/test/v1/partner/questionnaires/foobar/respondents.json?api_key=yourapikey&company_key=companykey&user_key=userkey
 ```
 
-Avec les paramètres, ci-dessous.
+Avec les attributs ci-dessous dans le contenu de votre requête :
 
 Clé              | valeur
 -----------------|------------------
@@ -145,7 +146,8 @@ status           | Statut (état) du répondant
 questionnaire    | Informations (id, name, slug, offer_ref) du questionnaire lié au répondant
 
 Les résultats sont paginés :
-`previousPage` représente l'URL de la page avec les résultats précédents,
-`nextPage` représente celle avec les résultats suivants.
+`previous_page` représente l'URL de la page avec les résultats précédents,
+`next_page` représente celle avec les résultats suivants.
 
-`totalResults` représente le nombre total de répondants paginés.
+`total_results` représente le nombre total de répondants paginés.
+`current_page` représente le numéro de la page courante.
