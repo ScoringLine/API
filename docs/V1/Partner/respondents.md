@@ -122,7 +122,6 @@ POST https://api.scoringline.com/api-saas/v1/partner/questionnaires/foobar/respo
 
 Paramètres       | description
 -----------------|------------------
-limit            | Seuil maximal de résulats affichés (10 par défaut)
 page             | Numéro de la page souhaitée (1 par défaut)
 
 ### Réponse
@@ -145,9 +144,11 @@ synthesis_link   | Lien vers la synthèse PDF du répondant (utilisateur connect
 status           | Statut (état) du répondant
 questionnaire    | Informations (id, name, slug, offer_ref) du questionnaire lié au répondant
 
-Les résultats sont paginés :
-`previous_page` représente l'URL de la page avec les résultats précédents,
-`next_page` représente celle avec les résultats suivants.
+Les résultats sont paginés, les informations suivantes vous sont retournées par l'API :
 
-`total_results` représente le nombre total de répondants paginés.
-`current_page` représente le numéro de la page courante.
+* `previous_page` représente l'URL de la page avec les résultats précédents;
+* `next_page` représente celle avec les résultats suivants;
+* `total_results` représente le nombre total de répondants paginés;
+* `current_page` représente le numéro de la page courante.
+
+La pagination est de 50 résultats par page
