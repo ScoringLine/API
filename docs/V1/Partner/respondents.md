@@ -18,13 +18,16 @@
 
 2. [Récupérer un répondant d'un questionnaire](#récupérer-un-répondant-dun-questionnaire)
 
+3. [Récupérer les répondants d'une entreprise](#récupérer-les-répondants-dune-entreprise)
+
 ## Récupérer les répondants d'un questionnaire
 
 ### Requête
-**POST** `api-saas/test/v1/partner/questionnaires/{slug}/respondents.json`
+**POST** (ou GET sans filtres) `api-saas/test/v1/partner/questionnaires/{slug}/respondents.json`
 
 ### Réponse
 `200` - La liste des candidats du questionnaire au format JSON
+`400` - Les données que vous envoyez sont incorrect (un message d'erreur est fourni)
 
 ### Filtres
 Il est possible de filtrer les répondants d'un questionnaire selon plusieurs critères.
@@ -43,7 +46,7 @@ Les filtres disponibles sont les suivants :
 POST https://api.scoringline.com/api-saas/test/v1/partner/questionnaires/foobar/respondents.json?api_key=yourapikey&company_key=companykey&user_key=userkey
 ```
 
-Avec les paramètres, ci-dessous.
+Avec les attributs ci-dessous dans le contenu de votre requête :
 
 Clé              | valeur
 -----------------|------------------
@@ -112,3 +115,40 @@ comment   | Commentaire
 ```
 POST https://api.scoringline.com/api-saas/v1/partner/questionnaires/foobar/respondents/{respondentId}/synthesis.pdf'
 ```
+## Récupérer les répondants d'une entreprise
+
+### Requête
+**GET** `api-saas/v1/partner/respondents`
+
+Paramètres       | description
+-----------------|------------------
+page             | Numéro de la page souhaitée (1 par défaut)
+
+### Réponse
+`200` - La liste des candidats de l'entreprise au format JSON
+
+Voici les données retournées :
+
+respondents      | description
+-----------------|------------------
+id               | Id du répondant 
+score_auto       | Scoring automatique
+score_total      | Note total
+phone_number     | Numéro de téléphone du répondant
+main_comment     | Commentaire principal du répondant
+email            | Email du répondant 
+first_name       | Prénom du répondant 
+last_name        | Nom du répondant 
+candidate_link   | Lien vers la fiche du répondant (utilisateur connecté sur Scoringline) 
+synthesis_link   | Lien vers la synthèse PDF du répondant (utilisateur connecté sur Scoringline) 
+status           | Statut (état) du répondant
+questionnaire    | Informations (id, name, slug, offer_ref) du questionnaire lié au répondant
+
+Les résultats sont paginés, les informations suivantes vous sont retournées par l'API :
+
+* `previous_page` représente l'URL de la page avec les résultats précédents;
+* `next_page` représente celle avec les résultats suivants;
+* `total_results` représente le nombre total de répondants paginés;
+* `current_page` représente le numéro de la page courante.
+
+La pagination est de 50 résultats par page
