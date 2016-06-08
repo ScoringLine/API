@@ -118,7 +118,7 @@ POST https://api.scoringline.com/api-saas/v1/partner/questionnaires/foobar/respo
 ## Récupérer les répondants d'une entreprise
 
 ### Requête
-**GET** `api-saas/v1/partner/respondents`
+**GET** `api-saas/v1/partner/respondents.json`
 
 Paramètres       | description
 -----------------|------------------
