@@ -71,6 +71,7 @@ last_name        | Nom du répondant
 candidate_link   | Lien vers la fiche du répondant (utilisateur connecté sur Scoringline) 
 synthesis_link   | Lien vers la synthèse PDF du répondant (utilisateur connecté sur Scoringline) 
 comments         | Tableau de commentaires concernant le répondant (voir tableau ci-dessous)
+custom_status    | Objet représentant le statut personnalisé attribué au répondant
 
 comments  | description
 ----------|------------------
@@ -102,6 +103,7 @@ candidate_link   | Lien vers la fiche du répondant (utilisateur connecté sur S
 synthesis_link   | Lien vers la synthèse PDF du répondant (utilisateur connecté sur Scoringline) 
 comments         | Tableau de commentaires concernant le répondant (voir tableau ci-dessous)
 documents        | Tableau des documents (CV, synthèse) (voir tableau ci-dessous)
+custom_status    | Objet représentant le statut personnalisé attribué au répondant
 
 comments  | description
 ----------|------------------
@@ -162,6 +164,7 @@ candidate_link   | Lien vers la fiche du répondant (utilisateur connecté sur S
 synthesis_link   | Lien vers la synthèse PDF du répondant (utilisateur connecté sur Scoringline) 
 status           | Statut (état) du répondant
 questionnaire    | Informations (id, name, slug, offer_ref) du questionnaire lié au répondant
+custom_status    | Objet représentant le statut personnalisé attribué au répondant
 
 Les résultats sont paginés, les informations suivantes vous sont retournées par l'API :
 
