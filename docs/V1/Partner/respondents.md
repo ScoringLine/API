@@ -48,10 +48,11 @@ POST https://api.scoringline.com/api-saas/test/v1/partner/questionnaires/foobar/
 
 Avec les attributs ci-dessous dans le contenu de votre requête :
 
-Clé              | valeur
------------------|------------------
-filters[status]  | accepted 
-filters[from]    | 1451602800 
+Clé                        | valeur               | description
+---------------------------|----------------------|---------------------------------
+filters[status]            | accepted             | Par statut des répondants
+filters[createdfrom]       | (integer) 1451602800 | Nouvelles candidatures depuis 
+filters[lastUpdatedFrom]   | (integer) 1466066108 | Candidatures mises à jour depuis
 
 Le script retournera un code `200` et l'ensemble des candidats ayant participé au questionnaire à partir du 01/01/2016 00:00:00 et ayant été acceptés.
 
