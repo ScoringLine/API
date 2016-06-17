@@ -101,13 +101,31 @@ last_name        | Nom du répondant
 candidate_link   | Lien vers la fiche du répondant (utilisateur connecté sur Scoringline) 
 synthesis_link   | Lien vers la synthèse PDF du répondant (utilisateur connecté sur Scoringline) 
 comments         | Tableau de commentaires concernant le répondant (voir tableau ci-dessous)
-documents        | L'ensemble des documents (CV, synthèse) encodés au format base64
+documents        | Tableau des documents (CV, synthèse) (voir tableau ci-dessous)
 
 comments  | description
 ----------|------------------
 author    | Prénom et Nom de l'auteur du commentaire
 author_id | Id de l'auteur du commentaire
 comment   | Commentaire
+
+documents  | description
+-----------|------------------
+synthesis  | Synthèse PDF du répondant (utilisateur connecté sur Scoringline) 
+resume     | CV du répondant (utilisateur connecté sur Scoringline) 
+
+synthesis | description
+----------|------------------
+data      | Document encodé en base64
+
+resume    | description
+----------|------------------
+fileName  | Nom du fichier avec son extension
+extension | Extension du fichier
+mimeType  | mimeType du fichier
+data      | Document encodé en base64
+
+
 
 ### Cas pratique
 
