@@ -51,7 +51,7 @@ Avec les attributs ci-dessous dans le contenu de votre requête :
 Clé                        | valeur                              | description
 ---------------------------|-------------------------------------|---------------------------------
 filters[status]            | accepted                            | Par statut des répondants
-filters[customStatus]      | (integer|string|integer[]|string[]) | Passer les identifiants des statuts personnalisés
+filters[customStatus]      | (integer-string-integer[]-string[]) | Passer les identifiants des statuts personnalisés
 filters[createdfrom]       | (integer) 1451602800                | Nouvelles candidatures depuis 
 filters[lastUpdatedFrom]   | (integer) 1466066108                | Candidatures mises à jour depuis
 
