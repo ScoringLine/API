@@ -17,13 +17,16 @@ Récupérer les répondants d'un questionnaire
 
 2. [Récupérer un répondant d'un questionnaire](#récupérer-un-répondant-dun-questionnaire)
 
+3. [Récupérer les répondants de son entreprise](#récupérer-les-répondants-dune-entreprise)
+
 ## Récupérer les répondants d'un questionnaire
 
 # Requête
-**POST** `api-saas/v1/customer/questionnaires/{slug}/respondents.json`
+**POST** (ou GET sans filtres)`api-saas/v1/customer/questionnaires/{slug}/respondents.json`
 
 # Réponse
 `200` - La liste des candidats du questionnaire au format JSON
+`400` - Les données que vous envoyez sont incorrect (un message d'erreur est fourni)
 
 # Filtres
 Il est possible de filtrer les répondants d'un questionnaire selon plusieurs critères.
@@ -45,11 +48,12 @@ POST https://api.scoringline.com/api-saas/v1/customer/questionnaires/foobar/resp
 
 Avec les paramètres, ci-dessous.
 
-Clé                        | valeur               | description
----------------------------|----------------------|---------------------------------
-filters[status]            | accepted             | Par statut des répondants
-filters[createdFrom]       | (integer) 1451602800 | Nouvelles candidatures depuis 
-filters[lastUpdatedFrom]   | (integer) 1466066108 | Candidatures mises à jour depuis
+Clé                        | valeur                              | description
+---------------------------|-------------------------------------|---------------------------------
+filters[status]            | accepted                            | Par statut des répondants
+filters[customStatus]      | (integer-string-integer[]-string[]) | Passer les identifiants des statuts personnalisés
+filters[createdfrom]       | (integer) 1451602800                | Nouvelles candidatures depuis 
+filters[lastUpdatedFrom]   | (integer) 1466066108                | Candidatures mises à jour depuis
 
 Le script retournera un code `200` et l'ensemble des candidats ayant particpé au questionnaire à partir du 01/01/2016 00:00:00 et ayant été acceptés.
 
@@ -60,7 +64,7 @@ data             | description
 id               | Id du répondant 
 score_auto       | Scoring automatique
 score_total      | Note total
-phone_number     | Numéro de téléphone du répondant 
+phone_number     | Numéro de téléphone du répondant
 main_comment     | Commentaire principal du répondant
 email            | Email du répondant 
 first_name       | Prénom du répondant 
@@ -68,6 +72,7 @@ last_name        | Nom du répondant
 candidate_link   | Lien vers la fiche du répondant (utilisateur connecté sur Scoringline) 
 synthesis_link   | Lien vers la synthèse PDF du répondant (utilisateur connecté sur Scoringline) 
 comments         | Tableau de commentaires concernant le répondant (voir tableau ci-dessous)
+custom_status    | Objet représentant le statut personnalisé attribué au répondant
 
 comments  | description
 ----------|------------------
@@ -98,13 +103,31 @@ last_name        | Nom du répondant
 candidate_link   | Lien vers la fiche du répondant (utilisateur connecté sur Scoringline) 
 synthesis_link   | Lien vers la synthèse PDF du répondant (utilisateur connecté sur Scoringline) 
 comments         | Tableau de commentaires concernant le répondant (voir tableau ci-dessous)
-documents        | L'ensemble des documents (CV, synthèse) encodés au format base64
+documents        | Tableau des documents (CV, synthèse) (voir tableau ci-dessous)
+custom_status    | Objet représentant le statut personnalisé attribué au répondant
 
 comments  | description
 ----------|------------------
 author    | Prénom et Nom de l'auteur du commentaire
 author_id | Id de l'auteur du commentaire
 comment   | Commentaire
+
+documents  | description
+-----------|------------------
+synthesis  | Synthèse PDF du répondant (utilisateur connecté sur Scoringline) 
+resume     | CV du répondant (utilisateur connecté sur Scoringline) 
+
+synthesis | description
+----------|------------------
+data      | Document encodé en base64
+
+resume    | description
+----------|------------------
+fileName  | Nom du fichier avec son extension
+extension | Extension du fichier
+mimeType  | mimeType du fichier
+data      | Document encodé en base64
+
 
 ### Cas pratique
 
@@ -113,3 +136,41 @@ comment   | Commentaire
 ```
 POST|GET https://api.scoringline.com/api-saas/v1/customer/questionnaires/foobar/respondents/{respondentId}/synthesis.pdf'
 ```
+## Récupérer les répondants de votre entreprise
+
+### Requête
+**GET** `api-saas/v1/customer/respondents.json`
+
+Paramètres       | description
+-----------------|------------------
+page             | Numéro de la page souhaitée (1 par défaut)
+
+### Réponse
+`200` - La liste des candidats de l'entreprise au format JSON
+
+Voici les données retournées :
+
+respondents      | description
+-----------------|------------------
+id               | Id du répondant 
+score_auto       | Scoring automatique
+score_total      | Note total
+phone_number     | Numéro de téléphone du répondant
+main_comment     | Commentaire principal du répondant
+email            | Email du répondant 
+first_name       | Prénom du répondant 
+last_name        | Nom du répondant 
+candidate_link   | Lien vers la fiche du répondant (utilisateur connecté sur Scoringline) 
+synthesis_link   | Lien vers la synthèse PDF du répondant (utilisateur connecté sur Scoringline) 
+status           | Statut (état) du répondant
+questionnaire    | Informations (id, name, slug, offer_ref) du questionnaire lié au répondant
+custom_status    | Objet représentant le statut personnalisé attribué au répondant
+
+Les résultats sont paginés, les informations suivantes vous sont retournées par l'API :
+
+* `previous_page` représente l'URL de la page avec les résultats précédents;
+* `next_page` représente celle avec les résultats suivants;
+* `total_results` représente le nombre total de répondants paginés;
+* `current_page` représente le numéro de la page courante.
+
+La pagination est de 50 résultats par page
