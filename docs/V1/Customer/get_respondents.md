@@ -26,7 +26,7 @@ Récupérer les répondants d'un questionnaire
 
 # Réponse
 `200` - La liste des candidats du questionnaire au format JSON
-`400` - Les données que vous envoyez sont incorrect (un message d'erreur est fourni)
+`400` - Les données que vous envoyez sont incorrectes (un message d'erreur est fourni)
 
 # Filtres
 Il est possible de filtrer les répondants d'un questionnaire selon plusieurs critères.
