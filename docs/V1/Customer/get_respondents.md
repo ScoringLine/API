@@ -1,7 +1,7 @@
 Récupérer les répondants d'un questionnaire
 =====================================================================
 
->**:warning: toutes les urls fournies dans cette documentation commencent par /api-saas/test/v1/. Elles ne sont utilisées que pour les tests de fonctionnement (aucun enregistrement), une fois le code implémentée, veuillez utiliser une url de la forme /api-saas/v1/**
+>**:warning: toutes les urls fournies dans cette documentation commencent par /api-saas/test/v1/. Elles ne sont utilisées que pour les tests de fonctionnement (aucun enregistrement), une fois le code implémenté, veuillez utiliser une url de la forme /api-saas/v1/**
 
 **Pré requis**
 
@@ -32,10 +32,16 @@ Récupérer les répondants d'un questionnaire
 Il est possible de filtrer les répondants d'un questionnaire selon plusieurs critères.
 
 Les filtres disponibles sont les suivants :
-* *status (`String`)* : Le statut du candidat. Example : `accepted`, `unmarked`, `waiting`
-* *haveScore (`String`)* : La notation du candidat. Example : `non_scored`, `scored_by_not_us`, `scored`, `scored_by_us`
-* *approximateKeyword (`String`)* : Chaîne de caractère recherchée dans le nom et l'adresse mail des candidats.
-* * *from (`Int`)* : UNIX timestamp. Permet de récupérer les candidats à partir d'une date donnée
+
+Filtres                     | Type                                 | Description                                                                | Exemple 
+--------------------------- |--------------------------------------|----------------------------------------------------------------------------|------------
+filters[status]             | string                               | Le statut du candidat                                                      | `accepted`, `unmarked`, `waiting`
+filters[customStatus]       | integer\|string\|integer[]\|string[] | Les identifiants des statuts personnalisés                                 | `a-rappeler`
+filters[haveScore]          | string                               | La notation du candidat                                                    | `non_scored`, `scored_by_not_us`, `scored`, `scored_by_us`
+filters[approximateKeyword] | string                               | Chaîne de caractère recherchée dans le nom et l'adresse mail des candidats | `e.bachman@yopmail.com`, `erlich`, `bachman`
+filters[createdfrom]        | integer (UNIX timestamp)             | Nouvelles candidatures depuis                                              | 1451602800 
+filters[lastUpdatedFrom]    | integer (UNIX timestamp)             | Candidatures mises à jour depuis                                           | 1466066108 
+
 
 # Cas pratique
 
@@ -48,37 +54,94 @@ POST https://api.scoringline.com/api-saas/v1/customer/questionnaires/foobar/resp
 
 Avec les paramètres, ci-dessous.
 
-Clé                        | valeur                              | description
----------------------------|-------------------------------------|---------------------------------
-filters[status]            | accepted                            | Par statut des répondants
-filters[customStatus]      | (integer-string-integer[]-string[]) | Passer les identifiants des statuts personnalisés
-filters[createdfrom]       | (integer) 1451602800                | Nouvelles candidatures depuis 
-filters[lastUpdatedFrom]   | (integer) 1466066108                | Candidatures mises à jour depuis
+Clé                        | Valeur       
+---------------------------|--------------
+filters[status]            | `accepted`   
+filters[createdfrom]       | `1451602800` 
+filters[lastUpdatedFrom]   | `1466066108` 
+
 
 Le script retournera un code `200` et l'ensemble des candidats ayant particpé au questionnaire à partir du 01/01/2016 00:00:00 et ayant été acceptés.
 
-Voici les données retournées
+Voici les données retournées:
+```json
+[
+  {
+    "score_total_percentage": null,
+    "id": 8865,
+    "score_auto": 37,
+    "score_total": null,
+    "main_comment": "Excellent candidat",
+    "phone_number": "+33666666666",
+    "email": "e.bachman@aviato.com",
+    "first_name": "Erlich",
+    "last_name": "Bachman",
+    "candidate_link": "https://fr.scoringline.com/admin/{yourCompanySlug}/questionnaire/foobar/repondant/8865/show",
+    "custom_status": null,
+    "synthesis_link": "https://fr.scoringline.com/admin/{yourCompanySlug}/questionnaire/foobar/repondant/8865/generate/synthesis.pdf",
+    "comments": null
+  },
+  {
+    "score_total_percentage": 75,
+    "id": 8903,
+    "score_auto": 20,
+    "score_total": 150.8,
+    "main_comment": null,
+    "phone_number": "+33666666666",
+    "email": "r.hendricks@piedpiper.com",
+    "first_name": "Richard",
+    "last_name": "Hendricks",
+    "candidate_link": "https://fr.scoringline.com/admin/{yourCompanySlug}/questionnaire/foobar/repondant/8903/show",
+    "custom_status": null,
+    "synthesis_link": "https://fr.scoringline.com/admin/{yourCompanySlug}/questionnaire/foobar/repondant/8903/generate/synthesis.pdf",
+    "comments": [
+      {
+        "author": "Gavin Belson",
+        "author_id": 325,
+        "comment": "A voir en entretien individuel"
+      }
+    ]
+  },
+  {
+    "score_total_percentage": 59,
+    "id": 9168,
+    "score_auto": 20,
+    "score_total": 118.9,
+    "main_comment": null,
+    "phone_number": "+33666666666",
+    "email": "b.gilfoyle@piedpiper.com",
+    "first_name": "Bertram",
+    "last_name": "Gilfoyle",
+    "candidate_link": "https://fr.scoringline.com/admin/{yourCompanySlug}/questionnaire/foobar/repondant/9168/show",
+    "custom_status": null,
+    "synthesis_link": "https://fr.scoringline.com/admin/{yourCompanySlug}/questionnaire/foobar/repondant/9168/generate/synthesis.pdf",
+    "comments": [
+      {
+        "author": "Gavin Belson",
+        "author_id": 325,
+        "comment": "Ne pas rappeler"
+      }
+    ]
+  },
+]
+```
+### Description des données
 
-data             | description
------------------|------------------
-id               | Id du répondant 
-score_auto       | Scoring automatique
-score_total      | Note total
-phone_number     | Numéro de téléphone du répondant
-main_comment     | Commentaire principal du répondant
-email            | Email du répondant 
-first_name       | Prénom du répondant 
-last_name        | Nom du répondant 
-candidate_link   | Lien vers la fiche du répondant (utilisateur connecté sur Scoringline) 
-synthesis_link   | Lien vers la synthèse PDF du répondant (utilisateur connecté sur Scoringline) 
-comments         | Tableau de commentaires concernant le répondant (voir tableau ci-dessous)
-custom_status    | Objet représentant le statut personnalisé attribué au répondant
+Data             | Type          | Description                                                     |
+-----------------|---------------|-----------------------------------------------------------------|
+id               | integer       | Id du répondant                                                 |
+score_auto       | integer       | Scoring automatique                                             |
+score_total      | integer|float | Note total                                                      |
+phone_number     | string        | Numéro de téléphone du répondant                                |
+main_comment     | string        | Commentaire principal du répondant                              |
+email            | string        | Email du répondant                                              |
+first_name       | string        | Prénom du répondant                                             |
+last_name        | string        | Nom du répondant                                                |
+candidate_link   | string (url)  | Lien vers la fiche du répondant                                 |
+synthesis_link   | string (url)  | Lien vers la synthèse PDF du répondant                          |
+comments         | object        | Objet représentant les commentaires concernant le répondant     |
+custom_status    | object        | Objet représentant le statut personnalisé attribué au répondant |
 
-comments  | description
-----------|------------------
-author    | Prénom et Nom de l'auteur du commentaire
-author_id | Id de l'auteur du commentaire
-comment   | Commentaire
 
 ## Récupérer un répondant d'un questionnaire
 
@@ -89,44 +152,93 @@ comment   | Commentaire
 `200` - Les données d'un candidat du questionnaire au format JSON
 
 Voici les données retournées :
+```json
+{
+  "score_total_percentage": 59,
+  "id": 9168,
+  "score_auto": 20,
+  "score_total": 118.9,
+  "main_comment": null,
+  "phone_number": "+33666666666",
+  "email": "b.gilfoyle@piedpiper.com",
+  "first_name": "Bertram",
+  "last_name": "Gilfoyle",
+  "candidate_link": "https://fr.scoringline.com/admin/{yourCompanySlug}/questionnaire/foobar/repondant/9168/show",
+  "custom_status": {
+    "id": 12,
+    "name": "A rappeler",
+    "slug": "a-rappeler"
+  },
+  "synthesis_link": "https://fr.scoringline.com/admin/{yourCompanySlug}/questionnaire/foobar/repondant/9168/generate/synthesis.pdf",
+  "documents": {
+    "synthesis": {
+      "data": "JVBERi0x..."
+      },
+    "resume": {
+      "fileName": "cv.pdf",
+      "extension": "pdf",
+      "mimeType": "application/pdf",
+      "data": "JVBERi0x..."
+      }
+  },
+  "comments": [
+      {
+        "author": "Gavin Belson",
+        "author_id": 325,
+        "comment": "Ne pas rappeler"
+      }
+    ]
+}
+```
+### Description des données
 
-data             | description
------------------|------------------
-id               | Id du répondant 
-score_auto       | Scoring automatique
-score_total      | Note total
-phone_number     | Numéro de téléphone du répondant
-main_comment     | Commentaire principal du répondant
-email            | Email du répondant 
-first_name       | Prénom du répondant 
-last_name        | Nom du répondant 
-candidate_link   | Lien vers la fiche du répondant (utilisateur connecté sur Scoringline) 
-synthesis_link   | Lien vers la synthèse PDF du répondant (utilisateur connecté sur Scoringline) 
-comments         | Tableau de commentaires concernant le répondant (voir tableau ci-dessous)
-documents        | Tableau des documents (CV, synthèse) (voir tableau ci-dessous)
-custom_status    | Objet représentant le statut personnalisé attribué au répondant
+Data             | Type          | Description                                                                   
+-----------------|---------------|-------------------------------------------------------------------------------------------
+id               | integer       | Id du répondant                                                               
+score_auto       | integer       | Scoring automatique                                                           
+score_total      | integer|float | Note total                                                                    
+phone_number     | string        | Numéro de téléphone du répondant                                              
+main_comment     | string        | Commentaire principal du répondant                                            
+email            | string        | Email du répondant                                                            
+first_name       | string        | Prénom du répondant                                                           
+last_name        | string        | Nom du répondant                                                              
+candidate_link   | string        | Lien vers la fiche du répondant                                               
+synthesis_link   | string        | Lien vers la synthèse PDF du répondant                                        
+comments         | object        | Tableau de commentaires concernant le répondant (voir Objet `comments`)
+documents        | object        | Tableau des documents (CV, synthèse) (voir Objet `documents`)
+custom_status    | object        | Objet représentant le statut personnalisé attribué au répondant (voir Objet `documents`)
+### Objet `comments`
+comments  | Type    | Description
+----------|---------|-----------------------------------------
+author    | string  | Prénom et Nom de l'auteur du commentaire
+author_id | integer | Id de l'auteur du commentaire
+comment   | string  | Commentaire
 
-comments  | description
-----------|------------------
-author    | Prénom et Nom de l'auteur du commentaire
-author_id | Id de l'auteur du commentaire
-comment   | Commentaire
+### Objet `documents`
+documents  | Type   | Description
+-----------|--------|---------------------------------------------------
+synthesis  | object | Synthèse PDF du répondant (voir Objet `synthesis`)
+resume     | ojbect | CV du répondant (voir Objet `resume`)
 
-documents  | description
------------|------------------
-synthesis  | Synthèse PDF du répondant (utilisateur connecté sur Scoringline) 
-resume     | CV du répondant (utilisateur connecté sur Scoringline) 
+### Objet `synthesis`
+synthesis | Type   | Description
+----------|--------|--------------------------
+data      | string | Document encodé en base64
 
-synthesis | description
-----------|------------------
-data      | Document encodé en base64
+### Objet `resume`
+resume    | Type   | Description
+----------|--------|----------------------------------
+fileName  | string | Nom du fichier avec son extension
+extension | string | Extension du fichier
+mimeType  | string | mimeType du fichier
+data      | string | Document encodé en base64
 
-resume    | description
-----------|------------------
-fileName  | Nom du fichier avec son extension
-extension | Extension du fichier
-mimeType  | mimeType du fichier
-data      | Document encodé en base64
+### Objet `custom_status`
+resume | Type   | Description
+-------|--------|----------------------------------
+id     | integer | Id du statut personnalisé
+name   | string  | Nom du statut
+slug   | string  | Identifant unique (url friendly)
 
 
 ### Cas pratique
@@ -142,10 +254,10 @@ POST|GET https://api.scoringline.com/api-saas/v1/customer/questionnaires/foobar/
 **GET** `api-saas/v1/customer/respondents.json`
 
 ### Paramêtres disponibles
-Paramètres       | Description                  | Type    | Valeur par défaut | Exemple
------------------|------------------------------|---------|-------------------|---------
-page             | Numéro de la page souhaitée  | integer | 1                 | `&page=2`
-limit            | Limite du nombre de résultat | integer | 50                |`&limit=10`
+Paramètres | Type    | Description                  | Valeur par défaut | Exemple
+-----------|---------|------------------------------|-------------------|---------
+page       | integer | Numéro de la page souhaitée  | 1                 | `&page=2`
+limit      | integer | Limite du nombre de résultat | 50                |`&limit=10`
 
 
 ### Réponse
@@ -153,21 +265,21 @@ limit            | Limite du nombre de résultat | integer | 50               
 
 Voici les données retournées :
 
-respondents      | description
------------------|------------------
-id               | Id du répondant 
-score_auto       | Scoring automatique
-score_total      | Note total
-phone_number     | Numéro de téléphone du répondant
-main_comment     | Commentaire principal du répondant
-email            | Email du répondant 
-first_name       | Prénom du répondant 
-last_name        | Nom du répondant 
-candidate_link   | Lien vers la fiche du répondant (utilisateur connecté sur Scoringline) 
-synthesis_link   | Lien vers la synthèse PDF du répondant (utilisateur connecté sur Scoringline) 
-status           | Statut (état) du répondant (int)
-questionnaire    | Informations (id, name, slug, offer_ref) du questionnaire lié au répondant
-custom_status    | Objet représentant le statut personnalisé attribué au répondant
+respondents    | description
+---------------|---------------------------------------------------------------------------------
+id             | Id du répondant 
+score_auto     | Scoring automatique
+score_total    | Note total
+phone_number   | Numéro de téléphone du répondant
+main_comment   | Commentaire principal du répondant
+email          | Email du répondant 
+first_name     | Prénom du répondant 
+last_name      | Nom du répondant 
+candidate_link | Lien vers la fiche du répondant (utilisateur connecté sur Scoringline) 
+synthesis_link | Lien vers la synthèse PDF du répondant (utilisateur connecté sur Scoringline) 
+status         | Statut (état) du répondant
+questionnaire  | Informations (id, name, slug, offer_ref) du questionnaire lié au répondant
+custom_status  | Objet représentant le statut personnalisé attribué au répondant
 
 Les résultats sont paginés, les informations suivantes vous sont retournées par l'API :
 
