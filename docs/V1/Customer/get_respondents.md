@@ -275,8 +275,8 @@ main_comment   | Commentaire principal du répondant
 email          | Email du répondant 
 first_name     | Prénom du répondant 
 last_name      | Nom du répondant 
-candidate_link | Lien vers la fiche du répondant (utilisateur connecté sur Scoringline) 
-synthesis_link | Lien vers la synthèse PDF du répondant (utilisateur connecté sur Scoringline) 
+candidate_link | Lien vers la fiche du répondant
+synthesis_link | Lien vers la synthèse PDF du répondant
 status         | Statut (état) du répondant
 questionnaire  | Informations (id, name, slug, offer_ref) du questionnaire lié au répondant
 custom_status  | Objet représentant le statut personnalisé attribué au répondant
