@@ -141,9 +141,12 @@ POST|GET https://api.scoringline.com/api-saas/v1/customer/questionnaires/foobar/
 ### Requête
 **GET** `api-saas/v1/customer/respondents.json`
 
-Paramètres       | description
------------------|------------------
-page             | Numéro de la page souhaitée (1 par défaut)
+### Paramêtres disponibles
+Paramètres       | Description                  | Type    | Valeur par défaut | Exemple
+-----------------|------------------------------|---------|-------------------|---------
+page             | Numéro de la page souhaitée  | integer | 1                 | `&page=2`
+limit            | Limite du nombre de résultat | integer | 50                |`&limit=10`
+
 
 ### Réponse
 `200` - La liste des candidats de l'entreprise au format JSON
@@ -162,7 +165,7 @@ first_name       | Prénom du répondant
 last_name        | Nom du répondant 
 candidate_link   | Lien vers la fiche du répondant (utilisateur connecté sur Scoringline) 
 synthesis_link   | Lien vers la synthèse PDF du répondant (utilisateur connecté sur Scoringline) 
-status           | Statut (état) du répondant
+status           | Statut (état) du répondant (int)
 questionnaire    | Informations (id, name, slug, offer_ref) du questionnaire lié au répondant
 custom_status    | Objet représentant le statut personnalisé attribué au répondant
 
@@ -173,4 +176,68 @@ Les résultats sont paginés, les informations suivantes vous sont retournées p
 * `total_results` représente le nombre total de répondants paginés;
 * `current_page` représente le numéro de la page courante.
 
-La pagination est de 50 résultats par page
+Exemple:
+### Requête
+**GET** `api-saas/v1/customer/respondents.json?&page=2&limit=2`
+
+### Réponse
+```json
+{
+  "items": [
+    {
+      "questionnaire": {
+        "id": {questionnaireId},
+        "name": "{questionnaireName}",
+        "slug": "{questionnaireSlug}",
+        "offer_ref": {questionnaireReference}
+      },
+      "score_total_percentage": null,
+      "id": {respondentId},
+      "score_auto": null,
+      "score_total": null,
+      "main_comment": null,
+      "status": {respondentStatus},
+      "phone_number": "{respondentPhoneNumber}",
+      "email": "{respondentEmail}",
+      "first_name": "{respondentFirstName}",
+      "last_name": "{respondentLastName}",
+      "candidate_link": "http://fr.scoringline.com/admin/{slugEnt}/questionnaire/{questionnaireSlug}/repondant/{respondentId}/show",
+      "custom_status": {
+        "id": {customStatusId},
+        "name": "{customStatusName}",
+        "slug": "{customStatusSlug}"
+      },
+      "synthesis_link": "http://fr.scoringline.com/admin/{slugEnt}/questionnaire/{questionnaireSlug}/repondant/{respondentId}/generate/synthesis.pdf"
+    },
+    {
+            "questionnaire": {
+        "id": {questionnaireId},
+        "name": "{questionnaireName}",
+        "slug": "{questionnaireSlug}",
+        "offer_ref": {questionnaireReference}
+      },
+      "score_total_percentage": null,
+      "id": {respondentId},
+      "score_auto": null,
+      "score_total": null,
+      "main_comment": null,
+      "status": {respondentStatus},
+      "phone_number": "{respondentPhoneNumber}",
+      "email": "{respondentEmail}",
+      "first_name": "{respondentFirstName}",
+      "last_name": "{respondentLastName}",
+      "candidate_link": "http://fr.scoringline.com/admin/{slugEnt}/questionnaire/{questionnaireSlug}/repondant/{respondentId}/show",
+      "custom_status": {
+        "id": {customStatusId},
+        "name": "{customStatusName}",
+        "slug": "{customStatusSlug}"
+      },
+      "synthesis_link": "http://fr.scoringline.com/admin/{slugEnt}/questionnaire/{questionnaireSlug}/repondant/{respondentId}/generate/synthesis.pdf"
+    }
+  ],
+  "total_results": 11,
+  "current_page": "2",
+  "nextPage": "http://api.scoringline.com/api-saas/v1/customer/respondents.json?&page=3",
+  "previousPage": "http://api.scoringline.com/api-saas/v1/customer/respondents.json&page=1"
+}
+```
