@@ -218,7 +218,7 @@ comment   | string  | Commentaire
 documents  | Type   | Description
 -----------|--------|---------------------------------------------------
 synthesis  | object | Synthèse PDF du répondant (voir Objet `synthesis`)
-resume     | ojbect | CV du répondant (voir Objet `resume`)
+resume     | object | CV du répondant (voir Objet `resume`)
 
 ### Objet `synthesis`
 synthesis | Type   | Description
