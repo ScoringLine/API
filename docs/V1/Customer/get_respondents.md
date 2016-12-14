@@ -18,6 +18,7 @@ Récupérer les répondants
 
 3. [Récupérer un répondant d'un questionnaire](#récupérer-un-répondant-dun-questionnaire)
 
+---
 
 ## Récupérer les répondants d'une entreprise
 
@@ -177,6 +178,7 @@ Voici les données retournées:
 }
 ```
 
+---
 
 ## Récupérer les répondants d'un questionnaire
 
@@ -192,7 +194,7 @@ Filtres                     | Type                                 | Description
 filters[status]             | string                               | Le statut du candidat                                                      | `accepted`, `unmarked`, `waiting`
 filters[customStatus]       | integer\|string\|integer[]\|string[] | Les identifiants des statuts personnalisés                                 | `a-rappeler`
 filters[haveScore]          | string                               | La notation du candidat                                                    | `non_scored`, `scored_by_not_us`, `scored`, `scored_by_us`
-filters[approximateKeyword] | string                               | Chaîne de caractère recherchée dans le nom et l'adresse mail des candidats | `e.bachman@yopmail.com`, `erlich`, `bachman`
+filters[approximateKeyword] | string                               | Chaîne de caractère recherchée dans le nom et l'adresse mail des candidats | `e.bachman@aviato.com`, `erlich`, `bachman`
 filters[createdfrom]        | integer (UNIX timestamp)             | Nouvelles candidatures depuis                                              | 1451602800 
 filters[lastUpdatedFrom]    | integer (UNIX timestamp)             | Candidatures mises à jour depuis                                           | 1466066108 
 
@@ -349,6 +351,7 @@ Voici les données retournées:
 ]
 ```
 
+---
 
 ## Récupérer un répondant d'un questionnaire
 
