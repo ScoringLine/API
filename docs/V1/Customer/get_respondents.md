@@ -12,23 +12,23 @@ Récupérer les répondants
 
 ## Table des matières
 
-1. [Récupérer les répondants de son entreprise](#récupérer-les-répondants-dune-entreprise)
+1. [Récupérer les répondants d'une entreprise](#récupérer-les-répondants-dune-entreprise)
 
-2. [Récupérer un répondant d'un questionnaire](#récupérer-un-répondant-dun-questionnaire)
+2. [Récupérer les répondants d'un questionnaire](#récupérer-les-répondants-dun-questionnaire)
 
-3. [Récupérer les répondants d'un questionnaire](#récupérer-les-répondants-dun-questionnaire)
+3. [Récupérer un répondant d'un questionnaire](#récupérer-un-répondant-dun-questionnaire)
 
 
-## Récupérer les répondants de votre entreprise
+## Récupérer les répondants d'une entreprise
 
 ### Requête
-**GET** `api-saas/v1/customer/respondents.json?page=2&limit=2`
+**GET** `api-saas/test/v1/customer/respondents.json`
 
 ### Paramêtres disponibles
 Paramètres | Type    | Description                  | Valeur par défaut | Exemple
 -----------|---------|------------------------------|-------------------|---------
 page       | integer | Numéro de la page souhaitée  | 1                 | `&page=2`
-limit      | integer | Limite du nombre de résultat | 50                | `&limit=10`
+limit      | integer | Nombre de résultats par page | 50                | `&limit=10`
 
 ### Réponse
 `200` - La liste des candidats de l'entreprise au format JSON
@@ -37,59 +37,34 @@ limit      | integer | Limite du nombre de résultat | 50                | `&l
   "items": [
     {
       "questionnaire": {
-        "id": {questionnaireId},
+        "id": "{questionnaireId}",
         "name": "{questionnaireName}",
         "slug": "{questionnaireSlug}",
-        "offer_ref": {questionnaireReference}
+        "offer_ref": "{questionnaireReference}"
       },
       "score_total_percentage": null,
-      "id": {respondentId},
+      "id": "{respondentId}",
       "score_auto": null,
       "score_total": null,
       "main_comment": null,
-      "status": {respondentStatus},
+      "status": "{respondentStatus}",
       "phone_number": "{respondentPhoneNumber}",
       "email": "{respondentEmail}",
       "first_name": "{respondentFirstName}",
       "last_name": "{respondentLastName}",
       "candidate_link": "http://fr.scoringline.com/admin/{slugEnt}/questionnaire/{questionnaireSlug}/repondant/{respondentId}/show",
       "custom_status": {
-        "id": {customStatusId},
-        "name": "{customStatusName}",
-        "slug": "{customStatusSlug}"
-      },
-      "synthesis_link": "http://fr.scoringline.com/admin/{slugEnt}/questionnaire/{questionnaireSlug}/repondant/{respondentId}/generate/synthesis.pdf"
-    },
-    {
-      "questionnaire": {
-        "id": {questionnaireId},
-        "name": "{questionnaireName}",
-        "slug": "{questionnaireSlug}",
-        "offer_ref": {questionnaireReference}
-      },
-      "score_total_percentage": null,
-      "id": {respondentId},
-      "score_auto": null,
-      "score_total": null,
-      "main_comment": null,
-      "status": {respondentStatus},
-      "phone_number": "{respondentPhoneNumber}",
-      "email": "{respondentEmail}",
-      "first_name": "{respondentFirstName}",
-      "last_name": "{respondentLastName}",
-      "candidate_link": "http://fr.scoringline.com/admin/{slugEnt}/questionnaire/{questionnaireSlug}/repondant/{respondentId}/show",
-      "custom_status": {
-        "id": {customStatusId},
+        "id": "{customStatusId}",
         "name": "{customStatusName}",
         "slug": "{customStatusSlug}"
       },
       "synthesis_link": "http://fr.scoringline.com/admin/{slugEnt}/questionnaire/{questionnaireSlug}/repondant/{respondentId}/generate/synthesis.pdf"
     }
   ],
-  "total_results": 11,
-  "current_page": "2",
-  "nextPage": "http://api.scoringline.com/api-saas/v1/customer/respondents.json?&page=3",
-  "previousPage": "http://api.scoringline.com/api-saas/v1/customer/respondents.json&page=1"
+  "total_results": "{totalResults}",
+  "current_page": "{currentPage}",
+  "nextPage": "http://api.scoringline.com/api-saas/test/v1/customer/respondents.json?page={nextPageNumber}&limit={limit}",
+  "previousPage": "http://api.scoringline.com/api-saas/test/v1/customer/respondents.json?page={previousPageNumber}&limit={limit}"
 }
 ```
 
@@ -112,7 +87,7 @@ id                     | integer      | Id du répondant
 score_auto             | integer      | Scoring automatique
 score_total            | integer      | Note total
 main_comment           | string       | Commentaire principal du répondant
-status                 | integer      | Statut (état) du répondant
+status                 | integer      | Id du statut (état) du répondant
 phone_number           | string       | Numéro de téléphone du répondant
 email                  | string       | Email du répondant 
 first_name             | string       | Prénom du répondant 
@@ -130,22 +105,87 @@ slug      | string  | Identifant unique (url friendly)
 offer-ref | string  | Référence unique du questionnaire 
 
 #### Objet `custom_status`
-Nom  | Type   | Description
------|--------|----------------------------------
+Nom  | Type    | Description
+-----|---------|----------------------------------
 id   | integer | Id du statut personnalisé
 name | string  | Nom du statut
 slug | string  | Identifant unique (url friendly)
 
 
+### Cas pratique
+Vous souhaitez récupérer la 2e page de la liste des répondants paginée par 2:
+
+```
+GET api-saas/test/v1/customer/respondents.json?page=2&limit=2
+```
+
+Voici les données retournées:
+```json
+{
+  "items": [
+    {
+      "questionnaire": {
+        "id": 887,
+        "name": "Foo Bar",
+        "slug": "foo-bar",
+        "offer_ref": "FOOBAR001"
+      },
+      "score_total_percentage": 75,
+      "id": 8903,
+      "score_auto": 20,
+      "score_total": 150.8,
+      "main_comment": null,
+      "status": 3,
+      "phone_number": "+33666666666",
+      "email": "r.hendricks@piedpiper.com",
+      "first_name": "Richard",
+      "last_name": "Hendricks",
+      "candidate_link": "https://fr.scoringline.com/admin/{yourCompanySlug}/questionnaire/foobar/repondant/8903/show",
+      "custom_status": {
+        "id": 12,
+        "name": "A rappeler",
+        "slug": "a-rappeler"
+      },
+      "synthesis_link": "https://fr.scoringline.com/admin/{yourCompanySlug}/questionnaire/foobar/repondant/8903/generate/synthesis.pdf"
+    },
+    {
+      "questionnaire": {
+        "id": 887,
+        "name": "Foo Bar",
+        "slug": "foo-bar",
+        "offer_ref": "FOOBAR001"
+      },
+      "score_total_percentage": 59,
+      "id": 9168,
+      "score_auto": 20,
+      "score_total": 118.9,
+      "main_comment": null,
+      "status": 6,
+      "phone_number": "+33666666666",
+      "email": "b.gilfoyle@piedpiper.com",
+      "first_name": "Bertram",
+      "last_name": "Gilfoyle",
+      "candidate_link": "https://fr.scoringline.com/admin/{yourCompanySlug}/questionnaire/foobar/repondant/9168/show",
+      "custom_status": null,
+      "synthesis_link": "https://fr.scoringline.com/admin/{yourCompanySlug}/questionnaire/foobar/repondant/9168/generate/synthesis.pdf"
+    }
+  ],
+  "total_results": 11,
+  "current_page": "2",
+  "nextPage": "http://api.scoringline.com/api-saas/test/v1/customer/respondents.json?&page=3",
+  "previousPage": "http://api.scoringline.com/api-saas/test/v1/customer/respondents.json&page=1"
+}
+```
+
 
 ## Récupérer les répondants d'un questionnaire
 
 ### Requête
-**POST** (ou GET sans filtres)`api-saas/v1/customer/questionnaires/{questionnaireSlug}/respondents.json`
+**POST** (ou GET sans filtres)`api-saas/test/v1/customer/questionnaires/{questionnaireSlug}/respondents.json`
 
 ### Paramêtres disponibles
 Il est possible de filtrer les répondants d'un questionnaire selon plusieurs critères.
-Les filtres disponibles sont les suivants :
+Les filtres disponibles  en POST sont les suivants :
 
 Filtres                     | Type                                 | Description                                                                | Exemple 
 --------------------------- |--------------------------------------|----------------------------------------------------------------------------|------------
@@ -156,14 +196,14 @@ filters[approximateKeyword] | string                               | Chaîne de 
 filters[createdfrom]        | integer (UNIX timestamp)             | Nouvelles candidatures depuis                                              | 1451602800 
 filters[lastUpdatedFrom]    | integer (UNIX timestamp)             | Candidatures mises à jour depuis                                           | 1466066108 
 
-# Réponse
+### Réponse
 `200` - La liste des candidats du questionnaire au format JSON
 `400` - Les données que vous envoyez sont incorrectes (un message d'erreur est fourni)
 ```json
 [
   {
     "score_total_percentage": null,
-    "id": {respondentId},
+    "id": "{respondentId}",
     "score_auto": null,
     "score_total": null,
     "main_comment": null,
@@ -176,15 +216,15 @@ filters[lastUpdatedFrom]    | integer (UNIX timestamp)             | Candidature
     "synthesis_link": "http://fr.scoringline.com/admin/{slugEnt}/questionnaire/{questionnaireSlug}/repondant/{respondentId}/generate/synthesis.pdf",
     "comments": [
       {
-        "author": {authorName},
-        "author_id": {authorId},
-        "comment": {authorComment}
+        "author": "{authorName}",
+        "author_id": "{authorId}",
+        "comment": "{authorComment}"
       }
     ]
   },
   {
     "score_total_percentage": null,
-    "id": {respondentId},
+    "id": "{respondentId}",
     "score_auto": null,
     "score_total": null,
     "main_comment": null,
@@ -232,7 +272,7 @@ comment   | string  | Commentaire
 Vous souhaitez récupérer l'ensemble des candidats ayant participé au questionnaire *foobar* en 2016 et ayant été acceptés.
 
 ```
-POST https://api.scoringline.com/api-saas/v1/customer/questionnaires/foobar/respondents.json?api_key=yourapikey&company_key=companykey&user_key=userkey
+POST api-saas/test/v1/customer/questionnaires/foobar/respondents.json
 ```
 
 Avec les paramètres POST, ci-dessous.
@@ -320,7 +360,7 @@ Voici les données retournées:
 ```json
 {
   "score_total_percentage": null,
-  "id": {respondentId},
+  "id": "{respondentId}",
   "score_auto": null,
   "score_total": null,
   "main_comment": null,
@@ -330,27 +370,27 @@ Voici les données retournées:
   "last_name": "{respondentLastName}",
   "candidate_link": "http://fr.scoringline.com/admin/{slugEnt}/questionnaire/{questionnaireSlug}/repondant/{respondentId}/show",
   "custom_status": {
-    "id": {customStatusId},
-    "name": {customStatusName},
-    "slug": {customStatusSlug}
+    "id": "{customStatusId}",
+    "name": "{customStatusName}",
+    "slug": "{customStatusSlug}"
   },
   "synthesis_link": "http://fr.scoringline.com/admin/{slugEnt}/questionnaire/{questionnaireSlug}/repondant/{respondentId}/generate/synthesis.pdf",
   "documents": {
     "synthesis": {
-      "data": {base64encodedFile}
+      "data": "{base64encodedFile}"
       },
     "resume": {
-      "fileName": {fileName},
-      "extension": {fileExtension},
-      "mimeType": {fileMimeType},
-      "data": {base64encodedFile}
+      "fileName": "{fileName}",
+      "extension": "{fileExtension}",
+      "mimeType": "{fileMimeType}",
+      "data": "{base64encodedFile}"
       }
   },
   "comments": [
       {
-        "author": {authorName},
-        "author_id": {authorId},
-        "comment": {authorComment}
+        "author": "{authorName}",
+        "author_id": "{authorId}",
+        "comment": "{authorComment}"
       }
     ]
 }
